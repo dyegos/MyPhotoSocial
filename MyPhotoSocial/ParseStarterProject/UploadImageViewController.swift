@@ -13,23 +13,23 @@ class UploadImageViewController: UIViewController, UITextViewDelegate
 {
     var activityIndicator = UIActivityIndicatorView()
     
-    @IBOutlet weak var imageSample: UIImageView!
-    @IBOutlet weak var messageText: UITextView! { didSet { messageText.delegate = self } }
+    @IBOutlet weak private var imageSample: UIImageView?
+    @IBOutlet weak private var messageText: UITextView? { didSet { messageText?.delegate = self } }
     
     @IBAction func pickImage(sender: UIButton)
     {
-        self.imageSample.pickImageFromAlbumWith(self)
+        self.imageSample?.pickImageFromAlbumWith(self)
     }
     
     @IBAction func postImage(sender: UIButton)
     {
         let post = PFObject(className: "Post")
         
-        post["message"] = messageText.text
+        post["message"] = messageText?.text
         post["userId"] = PFUser.currentUser()!.objectId!
         
-        let imageData = NSData(data: UIImagePNGRepresentation(imageSample.image!)!)
-        let imageName = "\(PFUser.currentUser()!.objectId!)-\(imageSample.hashValue).png"
+        let imageData = NSData(data: UIImagePNGRepresentation(imageSample!.image!)!)
+        let imageName = "\(PFUser.currentUser()!.objectId!)-\(imageSample?.hashValue).png"
         post["imageData"] = PFFile(name: imageName, data: imageData)
         
         self.setUpActivityIndicator()

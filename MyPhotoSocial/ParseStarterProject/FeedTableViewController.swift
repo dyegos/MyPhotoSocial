@@ -11,7 +11,7 @@ import Parse
 
 class FeedTableViewController: UITableViewController
 {
-    var followeds:[User]!
+    var followeds = [User]()
     var posts = [FUser]()
     
     override func viewDidLoad()
@@ -74,9 +74,9 @@ class FeedTableViewController: UITableViewController
     {
         let cell = tableView.dequeueReusableCellWithIdentifier(CellIdentifier.Feed, forIndexPath: indexPath) as! FeedTableViewCell
         
-        cell.photoImageView.convertParseImageFile(posts[indexPath.row].imageFile)
-        cell.userName.text = posts[indexPath.row].username
-        cell.messageTextField.text = posts[indexPath.row].message
+        cell.photoImageView?.convertParseImageFile(posts[indexPath.row].imageFile)
+        cell.userName?.text = posts[indexPath.row].username
+        cell.messageTextField?.text = posts[indexPath.row].message
         
         return cell
     }

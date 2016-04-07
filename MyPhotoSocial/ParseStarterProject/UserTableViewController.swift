@@ -17,8 +17,8 @@ struct CellIdentifier
 
 class UserTableViewController: UITableViewController
 {
-    var refresher:UIRefreshControl!
-    var myInfo = MyInfo()
+    let refresher = UIRefreshControl()
+    let myInfo = MyInfo()
     
     override func viewDidLoad()
     {
@@ -118,7 +118,6 @@ class UserTableViewController: UITableViewController
     
     func setUpPushToRefresh()
     {
-        refresher = UIRefreshControl()
         refresher.backgroundColor = UIColor(red: 0.25, green: 0.14, blue: 0.16, alpha: 1)
         refresher.attributedTitle = NSAttributedString(string: "Pull to refresh");
         refresher.addTarget(self, action: "refresh", forControlEvents: UIControlEvents.ValueChanged)

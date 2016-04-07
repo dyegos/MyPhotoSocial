@@ -11,9 +11,9 @@ import Parse
 
 class FeedTableViewCell: UITableViewCell
 {
-    @IBOutlet weak var photoImageView: UIImageView!
-    @IBOutlet weak var userName: UILabel!
-    @IBOutlet weak var messageTextField: UILabel!
+    @IBOutlet weak var photoImageView: UIImageView?
+    @IBOutlet weak var userName: UILabel?
+    @IBOutlet weak var messageTextField: UILabel?
 }
 
 extension UIImageView

@@ -21,19 +21,19 @@ class LoginViewController: UIViewController
 {
     //MARK: Outlets
     
-    @IBOutlet weak var usernameField: UITextField!
-    @IBOutlet weak var passwordField: UITextField!
-    @IBOutlet weak var requestButton: UIButton!
-    @IBOutlet weak var toggleState: UIButton!
-    @IBOutlet weak var registerLabel: UILabel!
+    @IBOutlet weak private var usernameField: UITextField?
+    @IBOutlet weak private var passwordField: UITextField?
+    @IBOutlet weak private var requestButton: UIButton?
+    @IBOutlet weak private var toggleState: UIButton?
+    @IBOutlet weak private var registerLabel: UILabel?
     
     //MARK: Properties
     
-    var login = Login()
-    var activityIndicator: UIActivityIndicatorView!
-    var isTextFieldsLegible : Bool
+    let login = Login()
+    let activityIndicator = UIActivityIndicatorView()
+    var isTextFieldsLegible: Bool
     {
-        guard self.usernameField.text != "" || self.passwordField.text != "" else
+        guard self.usernameField?.text != "" || self.passwordField?.text != "" else
         {
             self.createAlertWithTitle("Invalid input", andMessage: "Please enter a valid username and password")
                 
@@ -42,15 +42,16 @@ class LoginViewController: UIViewController
             
         return true
     }
+    
     var isSignUp = false
     {
         didSet
         {
-            self.requestButton.setTitle(self.isSignUp ? "Sign up" : "Login", forState: .Normal)
-            self.toggleState.setTitle(self.isSignUp ? "Login" : "Sign up", forState: .Normal)
-            self.registerLabel.text = self.isSignUp ? "Have an Account?" : "Don't have an account?"
+            self.requestButton?.setTitle(self.isSignUp ? "Sign up" : "Login", forState: .Normal)
+            self.toggleState?.setTitle(self.isSignUp ? "Login" : "Sign up", forState: .Normal)
+            self.registerLabel?.text = self.isSignUp ? "Have an Account?" : "Don't have an account?"
             
-            self.usernameField.becomeFirstResponder()
+            self.usernameField?.becomeFirstResponder()
         }
     }
     
@@ -62,7 +63,7 @@ class LoginViewController: UIViewController
         
         self.activityIndicator.startAnimatingAndIgnoreInteractions()
         
-        self.login.set(isSignIn: !self.isSignUp, username: self.usernameField.text!, password: self.passwordField.text!)
+        self.login.set(isSignIn: !self.isSignUp, username: self.usernameField!.text!, password: self.passwordField!.text!)
         .onError
         {
             print("\($0!)")
@@ -106,7 +107,7 @@ class LoginViewController: UIViewController
     
     func createAcitivitySpinner()
     {
-        self.activityIndicator = UIActivityIndicatorView(frame: CGRectMake(0, 0, 100, 100))
+        self.activityIndicator.frame = CGRectMake(0, 0, 100, 100)
         self.activityIndicator.center = self.view.center
         self.activityIndicator.hidesWhenStopped = true
         self.activityIndicator.activityIndicatorViewStyle = .Gray
