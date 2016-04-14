@@ -29,8 +29,12 @@ class LoginViewController: UIViewController
     
     //MARK: Properties
     
+    //Creates the login object
     let login = Login()
+    //Creates the UIActivityIndicatorView object
     let activityIndicator = UIActivityIndicatorView()
+    
+    //Propertie that verifies if any of the filds are legible to login
     var isTextFieldsLegible: Bool
     {
         guard self.usernameField?.text != "" || self.passwordField?.text != "" else
@@ -43,6 +47,7 @@ class LoginViewController: UIViewController
         return true
     }
     
+    //Propertie that helps switch the label and button names if the user wants to sign up ou login
     var isSignUp = false
     {
         didSet
@@ -59,28 +64,40 @@ class LoginViewController: UIViewController
     
     @IBAction func loginButton()
     {
+        //verify if the labels are good
         if !self.isTextFieldsLegible { return }
         
+        //blocks user interactions and puts a loading indicator on the screen
         self.activityIndicator.startAnimatingAndIgnoreInteractions()
         
+        //Sets up the login request
         self.login.set(isSignIn: !self.isSignUp, username: self.usernameField!.text!, password: self.passwordField!.text!)
+        //Gets if it has an error
         .onError
         {
-            print("\($0!)")
+            print("\($0)")
+            //Creates an alert that shows the error
             self.createAlertWithTitle("request failed", andMessage: $0!)
+            //reenable user interactions and removes the loading indicator on the screen
             self.activityIndicator.stopAnimatingAndIngnoreInteractions()
         }
+        //Gets if is success
         .onSuccess
         {
-            print("\($0!)")
+            print("\($0)")
+            
+            //reenable user interactions and removes the loading indicator on the screen
             self.activityIndicator.stopAnimatingAndIngnoreInteractions()
             
             self.performSegueWithIdentifier(SegueIdentifier.Login, sender: self)
-        }.start();
+        }
+        //Starts login request
+        .start();
     }
     
     @IBAction func signupButton()
     {
+        //switches the texts for sing up and login
         self.isSignUp = !self.isSignUp
     }
     
@@ -90,7 +107,8 @@ class LoginViewController: UIViewController
     {
         super.viewDidLoad()
         
-        self.createAcitivitySpinner()
+        //Sets up the activity spinner
+        self.createActivitySpinner()
     }
     
     override func viewDidAppear(animated: Bool)
@@ -105,7 +123,8 @@ class LoginViewController: UIViewController
     
     //MARK: Methods
     
-    func createAcitivitySpinner()
+    //Sets up the activity spinner
+    func createActivitySpinner()
     {
         self.activityIndicator.frame = CGRectMake(0, 0, 100, 100)
         self.activityIndicator.center = self.view.center
@@ -115,6 +134,7 @@ class LoginViewController: UIViewController
         self.view.addSubview(self.activityIndicator)
     }
     
+    //Creates an simples alert on the screen
     func createAlertWithTitle(title: String, andMessage message: String)
     {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .Alert)

@@ -11,8 +11,12 @@ import Parse
 
 class FeedTableViewController: UITableViewController
 {
+    // MARK: - Properties
+    
     var followeds = [User]()
     var posts = [FUser]()
+    
+    // MARK: - view lifecycle
     
     override func viewDidLoad()
     {
@@ -23,38 +27,32 @@ class FeedTableViewController: UITableViewController
             PFQuery(className: "Post")
             .whereKey("userId", equalTo: flwing.uniqueID)
             .findObjectsInBackgroundWithBlock
-            { (objects, error) -> Void in
-                
-                if error != nil
+            {
+                if let error = $1
                 {
-                    print("Deu erro \(error!.code)")
+                    print("Deu erro \(error.code)")
                     return
                 }
                 
-                guard let objs = objects where objs.count > 0 else
+                guard let objs = $0 where objs.count > 0 else
                 {
+                    print("Objects invalid or has no itens")
                     return
                 }
                 
-                for obj in objs
+                self.posts = objs.flatMap
                 {
                     var user = FUser(uniqueID: flwing.uniqueID, username: flwing.username)
                     
-                    user.imageFile = obj["imageData"] as? PFFile
-                    user.message = obj["message"] as! String
+                    user.imageFile = $0["imageData"] as? PFFile
+                    user.message = $0["message"] as? String
                     
-                    self.posts.append(user)
+                    return user
                 }
                 
                 self.tableView.reloadSections(NSIndexSet(index: 0), withRowAnimation: UITableViewRowAnimation.Fade)
             }
         }
-    }
-
-    override func didReceiveMemoryWarning()
-    {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
 
     // MARK: - Table view data source
@@ -69,7 +67,6 @@ class FeedTableViewController: UITableViewController
         return posts.count
     }
 
-    
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
     {
         let cell = tableView.dequeueReusableCellWithIdentifier(CellIdentifier.Feed, forIndexPath: indexPath) as! FeedTableViewCell
@@ -79,5 +76,11 @@ class FeedTableViewController: UITableViewController
         cell.messageTextField?.text = posts[indexPath.row].message
         
         return cell
+    }
+    
+    override func didReceiveMemoryWarning()
+    {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
     }
 }

@@ -13,8 +13,8 @@ typealias callClosure = (String?) -> Void
 
 protocol CanFailProtocol
 {
-    var error: callClosure! { get }
-    var success: callClosure! { get }
+    var error: callClosure? { get }
+    var success: callClosure? { get }
     
     func onError(closure: callClosure) -> Self
     func onSuccess(closure: callClosure) -> Self
@@ -26,8 +26,8 @@ class Login : CanFailProtocol
     private var password = ""
     private var isSignIn = false
     
-    internal var error: callClosure!
-    internal var success: callClosure!
+    internal var error: callClosure?
+    internal var success: callClosure?
     
     init() {}
     
@@ -45,14 +45,16 @@ class Login : CanFailProtocol
         if self.isSignIn
         {
             PFUser.logInWithUsernameInBackground(self.username, password: self.password)
-            { [unowned self] in
-                guard $1 == nil else
+            {
+                [unowned self] in
+                
+                if let error = $1
                 {
-                    self.error($1!.userInfo["error"] as? String)
+                    if let closure = self.error { closure(error.userInfo["error"] as? String) }
                     return
                 }
-                    
-                self.success("OK")
+                
+                if let closure = self.success { closure("OK") }
             }
         }
         else
@@ -62,14 +64,16 @@ class Login : CanFailProtocol
             user.password = self.password
             
             user.signUpInBackgroundWithBlock
-            { [unowned self] in
-                guard $1 == nil else
+            {
+                [unowned self] in
+                
+                if let error = $1
                 {
-                    self.error($1!.userInfo["error"] as? String)
+                    if let closure = self.error { closure(error.userInfo["error"] as? String) }
                     return
                 }
                     
-                self.success("OK")
+                if let closure = self.success { closure("OK") }
             }
         }
     }

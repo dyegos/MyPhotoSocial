@@ -8,21 +8,6 @@
 
 import Parse
 
-func getQOSUserInitiated() -> dispatch_queue_t
-{
-    let qos = QOS_CLASS_USER_INITIATED
-    return dispatch_get_global_queue(qos, 0)
-}
-
-extension Array
-{
-    public mutating func replace(object obj:Element, AtIndex index:Int)
-    {
-        self.removeAtIndex(index)
-        self.insert(obj, atIndex: index)
-    }
-}
-
 class MyInfo : CanFailProtocol
 {
     var users = [User]()
@@ -60,7 +45,7 @@ class MyInfo : CanFailProtocol
                 self.users.append(SUser(uniqueID: following.objectId!, username: following.username!))
             }
             
-            self.userRequestCount++
+            self.userRequestCount += 1
             self.verifyUserRequest()
         }
     }
@@ -187,7 +172,7 @@ extension User where Self: Following
 
 protocol Following
 {
-    var message: String { get }
+    var message: String? { get }
     var imageFile: PFFile? { get }
 }
 
@@ -208,7 +193,7 @@ struct FUser : User, Following
 {
     var uniqueID: String = "no ID"
     var username: String = "no name"
-    var message: String = "no message"
+    var message: String? = "no message"
     var imageFile: PFFile?
     
     init(uniqueID uID:String, username name:String)
