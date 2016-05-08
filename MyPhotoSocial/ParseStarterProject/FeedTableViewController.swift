@@ -71,9 +71,8 @@ class FeedTableViewController: UITableViewController
     {
         let cell = tableView.dequeueReusableCellWithIdentifier(CellIdentifier.Feed, forIndexPath: indexPath) as! FeedTableViewCell
         
-        cell.photoImageView?.convertParseImageFile(posts[indexPath.row].imageFile)
-        cell.userName?.text = posts[indexPath.row].username
-        cell.messageTextField?.text = posts[indexPath.row].message
+        let viewModel = CardViewModel(model: posts[indexPath.row])
+        cell.configure(withPresenter: viewModel)
         
         return cell
     }

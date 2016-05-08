@@ -17,6 +17,7 @@
 		81BA81791A49E0DB00E65899 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81BA81781A49E0DB00E65899 /* AudioToolbox.framework */; };
 		81BA817B1A49E0E500E65899 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81BA817A1A49E0E500E65899 /* SystemConfiguration.framework */; };
 		81BA817F1A49E0F000E65899 /* libstdc++.6.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 81BA817E1A49E0F000E65899 /* libstdc++.6.dylib */; };
+		880185E61CDFAC210079BF8E /* ParseStarterProject_SwiftTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 880185E51CDFAC210079BF8E /* ParseStarterProject_SwiftTests.swift */; };
 		880C6DD81CBF1CA500E2BCEE /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 880C6DD71CBF1CA500E2BCEE /* Extensions.swift */; };
 		887DAFAE1CA726270067E830 /* MyInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 887DAFAD1CA726270067E830 /* MyInfo.swift */; };
 		887DAFB01CA736B70067E830 /* ServerRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 887DAFAF1CA736B70067E830 /* ServerRequests.swift */; };
@@ -26,6 +27,16 @@
 		889F9EAE1C824F9A001D66AF /* UserTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 889F9EAD1C824F9A001D66AF /* UserTableViewController.swift */; };
 		88E99D8E1C8C6D2900DE882E /* UploadImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88E99D8D1C8C6D2900DE882E /* UploadImageViewController.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		880185E81CDFAC220079BF8E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 81BA813D1A49DA1800E65899 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 81BA81441A49DA1800E65899;
+			remoteInfo = "ParseStarterProject-Swift";
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		814C3AC71B69877600E307BB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -42,6 +53,9 @@
 		81BA817A1A49E0E500E65899 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		81BA817E1A49E0F000E65899 /* libstdc++.6.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libstdc++.6.dylib"; path = "usr/lib/libstdc++.6.dylib"; sourceTree = SDKROOT; };
 		81BA81801A49E10C00E65899 /* ParseUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ParseUI.framework; sourceTree = "<group>"; };
+		880185E31CDFAC210079BF8E /* ParseStarterProject-SwiftTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "ParseStarterProject-SwiftTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		880185E51CDFAC210079BF8E /* ParseStarterProject_SwiftTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParseStarterProject_SwiftTests.swift; sourceTree = "<group>"; };
+		880185E71CDFAC210079BF8E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		880C6DD71CBF1CA500E2BCEE /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		887DAFAD1CA726270067E830 /* MyInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyInfo.swift; sourceTree = "<group>"; };
 		887DAFAF1CA736B70067E830 /* ServerRequests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServerRequests.swift; sourceTree = "<group>"; };
@@ -66,6 +80,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		880185E01CDFAC210079BF8E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -83,6 +104,7 @@
 			children = (
 				81BA81471A49DA1800E65899 /* ParseStarterProject */,
 				814C3AC51B69877600E307BB /* Resources */,
+				880185E41CDFAC210079BF8E /* ParseStarterProject-SwiftTests */,
 				81BA816A1A49DB5600E65899 /* Frameworks */,
 				81BA81461A49DA1800E65899 /* Products */,
 			);
@@ -92,6 +114,7 @@
 			isa = PBXGroup;
 			children = (
 				81BA81451A49DA1800E65899 /* ParseStarterProject-Swift.app */,
+				880185E31CDFAC210079BF8E /* ParseStarterProject-SwiftTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -137,6 +160,15 @@
 			name = "System Frameworks";
 			sourceTree = "<group>";
 		};
+		880185E41CDFAC210079BF8E /* ParseStarterProject-SwiftTests */ = {
+			isa = PBXGroup;
+			children = (
+				880185E51CDFAC210079BF8E /* ParseStarterProject_SwiftTests.swift */,
+				880185E71CDFAC210079BF8E /* Info.plist */,
+			);
+			path = "ParseStarterProject-SwiftTests";
+			sourceTree = "<group>";
+		};
 		889F9EAC1C821AAC001D66AF /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
@@ -165,18 +197,40 @@
 			productReference = 81BA81451A49DA1800E65899 /* ParseStarterProject-Swift.app */;
 			productType = "com.apple.product-type.application";
 		};
+		880185E21CDFAC210079BF8E /* ParseStarterProject-SwiftTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 880185EA1CDFAC220079BF8E /* Build configuration list for PBXNativeTarget "ParseStarterProject-SwiftTests" */;
+			buildPhases = (
+				880185DF1CDFAC210079BF8E /* Sources */,
+				880185E01CDFAC210079BF8E /* Frameworks */,
+				880185E11CDFAC210079BF8E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				880185E91CDFAC220079BF8E /* PBXTargetDependency */,
+			);
+			name = "ParseStarterProject-SwiftTests";
+			productName = "ParseStarterProject-SwiftTests";
+			productReference = 880185E31CDFAC210079BF8E /* ParseStarterProject-SwiftTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
 		81BA813D1A49DA1800E65899 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0700;
+				LastSwiftUpdateCheck = 0730;
 				LastUpgradeCheck = 0730;
 				ORGANIZATIONNAME = Parse;
 				TargetAttributes = {
 					81BA81441A49DA1800E65899 = {
 						CreatedOnToolsVersion = 6.1.1;
+					};
+					880185E21CDFAC210079BF8E = {
+						CreatedOnToolsVersion = 7.3;
+						TestTargetID = 81BA81441A49DA1800E65899;
 					};
 				};
 			};
@@ -194,6 +248,7 @@
 			projectRoot = "";
 			targets = (
 				81BA81441A49DA1800E65899 /* ParseStarterProject-Swift */,
+				880185E21CDFAC210079BF8E /* ParseStarterProject-SwiftTests */,
 			);
 		};
 /* End PBXProject section */
@@ -205,6 +260,13 @@
 			files = (
 				814C3ACA1B69877600E307BB /* Main.storyboard in Resources */,
 				814C3ACB1B69877600E307BB /* Images.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		880185E11CDFAC210079BF8E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -228,7 +290,23 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		880185DF1CDFAC210079BF8E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				880185E61CDFAC210079BF8E /* ParseStarterProject_SwiftTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		880185E91CDFAC220079BF8E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 81BA81441A49DA1800E65899 /* ParseStarterProject-Swift */;
+			targetProxy = 880185E81CDFAC220079BF8E /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		814C3AC61B69877600E307BB /* Main.storyboard */ = {
@@ -359,6 +437,39 @@
 			};
 			name = Release;
 		};
+		880185EB1CDFAC220079BF8E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ANALYZER_NONNULL = YES;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = "ParseStarterProject-SwiftTests/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.curso.ParseStarterProject-SwiftTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ParseStarterProject-Swift.app/ParseStarterProject-Swift";
+			};
+			name = Debug;
+		};
+		880185EC1CDFAC220079BF8E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ANALYZER_NONNULL = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = "ParseStarterProject-SwiftTests/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.curso.ParseStarterProject-SwiftTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ParseStarterProject-Swift.app/ParseStarterProject-Swift";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -379,6 +490,14 @@
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
+		};
+		880185EA1CDFAC220079BF8E /* Build configuration list for PBXNativeTarget "ParseStarterProject-SwiftTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				880185EB1CDFAC220079BF8E /* Debug */,
+				880185EC1CDFAC220079BF8E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
 		};
 /* End XCConfigurationList section */
 	};

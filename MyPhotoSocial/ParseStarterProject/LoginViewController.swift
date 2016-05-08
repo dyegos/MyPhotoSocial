@@ -30,25 +30,29 @@ class LoginViewController: UIViewController
     //MARK: Properties
     
     //Creates the login object
-    let login = Login()
+    private let login = Login()
     //Creates the UIActivityIndicatorView object
-    let activityIndicator = UIActivityIndicatorView()
+    private lazy var activityIndicator:UIActivityIndicatorView =
+    { [unowned self] in
+        
+        let indicator = UIActivityIndicatorView()
+        indicator.frame = CGRectMake(0, 0, 100, 100)
+        indicator.center = self.view.center
+        indicator.hidesWhenStopped = true
+        indicator.activityIndicatorViewStyle = .Gray
+        
+        return indicator
+    }()
     
-    //Propertie that verifies if any of the filds are legible to login
-    var isTextFieldsLegible: Bool
-    {
-        guard self.usernameField?.text != "" || self.passwordField?.text != "" else
-        {
-            self.createAlertWithTitle("Invalid input", andMessage: "Please enter a valid username and password")
-                
-            return false
-        }
+    private lazy var tapGesture:UITapGestureRecognizer =
+    { [unowned self] in
             
-        return true
-    }
+        let gesture = UITapGestureRecognizer(target: self, action: #selector(self.touched))
+        return gesture
+    }()
     
     //Propertie that helps switch the label and button names if the user wants to sign up ou login
-    var isSignUp = false
+    private var isSignUp = false
     {
         didSet
         {
@@ -61,31 +65,25 @@ class LoginViewController: UIViewController
     }
     
     //MARK: buttons IBActions
-    
-    @IBAction func loginButton()
+    @IBAction private func loginButton()
     {
-        //verify if the labels are good
-        if !self.isTextFieldsLegible { return }
-        
         //blocks user interactions and puts a loading indicator on the screen
         self.activityIndicator.startAnimatingAndIgnoreInteractions()
         
         //Sets up the login request
-        self.login.set(isSignIn: !self.isSignUp, username: self.usernameField!.text!, password: self.passwordField!.text!)
+        self.login.set(isSignIn: !self.isSignUp, username: self.usernameField?.text, password: self.passwordField?.text)
         //Gets if it has an error
         .onError
         {
-            print("\($0)")
+            let error = $0!
             //Creates an alert that shows the error
-            self.createAlertWithTitle("request failed", andMessage: $0!)
+            self.createAlertWithTitle(error.title, andMessage: error.message)
             //reenable user interactions and removes the loading indicator on the screen
             self.activityIndicator.stopAnimatingAndIngnoreInteractions()
         }
         //Gets if is success
         .onSuccess
-        {
-            print("\($0)")
-            
+        { _ in
             //reenable user interactions and removes the loading indicator on the screen
             self.activityIndicator.stopAnimatingAndIngnoreInteractions()
             
@@ -95,7 +93,7 @@ class LoginViewController: UIViewController
         .start();
     }
     
-    @IBAction func signupButton()
+    @IBAction private func signupButton()
     {
         //switches the texts for sing up and login
         self.isSignUp = !self.isSignUp
@@ -106,62 +104,33 @@ class LoginViewController: UIViewController
     override func viewDidLoad()
     {
         super.viewDidLoad()
-        
-        //Sets up the activity spinner
-        self.createActivitySpinner()
     }
     
     override func viewDidAppear(animated: Bool)
     {
-        super.viewWillAppear(animated)
-
-        /*if let _ = PFUser.currentUser()
+        super.viewDidAppear(animated)
+        
+        if let _ = PFUser.currentUser()?.objectId
         {
             self.performSegueWithIdentifier(SegueIdentifier.Login, sender: self)
-        }*/
-    }
-    
-    //MARK: Methods
-    
-    //Sets up the activity spinner
-    func createActivitySpinner()
-    {
-        self.activityIndicator.frame = CGRectMake(0, 0, 100, 100)
-        self.activityIndicator.center = self.view.center
-        self.activityIndicator.hidesWhenStopped = true
-        self.activityIndicator.activityIndicatorViewStyle = .Gray
-        
-        self.view.addSubview(self.activityIndicator)
-    }
-    
-    //Creates an simples alert on the screen
-    func createAlertWithTitle(title: String, andMessage message: String)
-    {
-        let alert = UIAlertController(title: title, message: message, preferredStyle: .Alert)
-        alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
-        
-        self.presentViewController(alert, animated: true, completion: nil)
-    }
-    
-    //MARK: Prepera for segue
-    
-    /*override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?)
-    {
-        if let viewController = segue.verifiedViewController as? LoginViewController
-        {
-            if let identifier = segue.identifier
-            {
-                if identifier == SegueIdentifier.Login
-                {
-                    viewController.displayLayer(CALayer());
-                }
-            }
+            return
         }
-    }*/
-
+        
+        self.usernameField?.delegate = self
+        self.passwordField?.delegate = self
+        self.view.addGestureRecognizer(self.tapGesture)
+        self.view.addSubview(activityIndicator)
+    }
+    
     override func didReceiveMemoryWarning()
     {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    //MARK: Touch Delegate
+    func touched()
+    {
+        self.view.endEditing(true)
     }
 }

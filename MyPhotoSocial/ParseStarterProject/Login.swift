@@ -9,7 +9,7 @@
 import UIKit
 import Parse
 
-typealias callClosure = (String?) -> Void
+typealias callClosure = (RequestError?) -> Void
 
 protocol CanFailProtocol
 {
@@ -20,18 +20,16 @@ protocol CanFailProtocol
     func onSuccess(closure: callClosure) -> Self
 }
 
-class Login : CanFailProtocol
+class Login : CanFailProtocol, LoginVerifier
 {
-    private var username = ""
-    private var password = ""
+    private var username:String?
+    private var password:String?
     private var isSignIn = false
     
     internal var error: callClosure?
     internal var success: callClosure?
     
-    init() {}
-    
-    func set(isSignIn isS:Bool, username name:String, password pass:String) -> Self
+    func set(isSignIn isS:Bool, username name:String?, password pass:String?) -> Self
     {
         self.username = name
         self.password = pass
@@ -42,19 +40,25 @@ class Login : CanFailProtocol
     
     func start()
     {
+        guard let userInfo = isTextFieldsLegible(self.username, password: self.password) else
+        {
+            if let closure = self.error { closure(RequestError(title: "Invalid input", message: "Please enter a valid username or password")) }
+            return
+        }
+        
         if self.isSignIn
         {
-            PFUser.logInWithUsernameInBackground(self.username, password: self.password)
+            PFUser.logInWithUsernameInBackground(userInfo.username, password: userInfo.password)
             {
                 [unowned self] in
                 
                 if let error = $1
                 {
-                    if let closure = self.error { closure(error.userInfo["error"] as? String) }
+                    if let closure = self.error { closure(RequestError(title: "Request failed", message: error.userInfo["error"] as! String)) }
                     return
                 }
                 
-                if let closure = self.success { closure("OK") }
+                if let closure = self.success { closure(nil) }
             }
         }
         else
@@ -69,11 +73,11 @@ class Login : CanFailProtocol
                 
                 if let error = $1
                 {
-                    if let closure = self.error { closure(error.userInfo["error"] as? String) }
+                    if let closure = self.error { closure(RequestError(title: "Request failed", message: error.userInfo["error"] as! String)) }
                     return
                 }
                     
-                if let closure = self.success { closure("OK") }
+                if let closure = self.success { closure(nil) }
             }
         }
     }

@@ -135,3 +135,58 @@ extension Array
         self.insert(obj, atIndex: index)
     }
 }
+
+//MARK: Login Verifier
+
+struct UserLoginInfo
+{
+    let username:String
+    let password:String
+}
+
+protocol LoginVerifier
+{
+    func isTextFieldsLegible(username: String?, password: String?) -> UserLoginInfo?
+}
+
+extension LoginVerifier
+{
+    //Propertie that verifies if any of the filds are legible to login
+    func isTextFieldsLegible(username: String?, password: String?) -> UserLoginInfo?
+    {
+        guard let user = username where user != "", let pws = password where pws != "" else
+        {
+            return nil
+        }
+        
+        return UserLoginInfo(username: user, password: pws)
+    }
+}
+
+//MARK: Error
+struct RequestError
+{
+    let title:String
+    let message:String
+}
+
+//MARK: View Controller
+extension UIViewController : UITextFieldDelegate
+{
+    public func textFieldShouldReturn(textField: UITextField) -> Bool
+    {
+        return textField.resignFirstResponder()
+    }
+}
+
+extension UIViewController
+{
+    //Creates an simples alert on the screen
+    func createAlertWithTitle(title: String, andMessage message: String)
+    {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .Alert)
+        alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
+        
+        self.presentViewController(alert, animated: true, completion: nil)
+    }
+}

@@ -142,7 +142,7 @@ class UserTableViewController: UITableViewController
     {
         refresher.backgroundColor = UIColor(red: 0.25, green: 0.14, blue: 0.16, alpha: 1)
         refresher.attributedTitle = NSAttributedString(string: "Pull to refresh");
-        refresher.addTarget(self, action: #selector(refresh), forControlEvents: UIControlEvents.ValueChanged)
+        refresher.addTarget(self, action: #selector(self.refresh), forControlEvents: UIControlEvents.ValueChanged)
         
         self.tableView.addSubview(refresher)
     }

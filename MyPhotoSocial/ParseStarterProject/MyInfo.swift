@@ -12,13 +12,11 @@ class MyInfo : CanFailProtocol
 {
     var users = [User]()
     
-    internal var error: callClosure!
-    internal var success: callClosure!
+    internal var error: callClosure?
+    internal var success: callClosure?
     
     private var userRequestCount = 0
     private var totalRequestedUsers = 0
-    
-    init() { }
     
     private func loadFollowing(following: PFUser, follower: String)
     {
@@ -30,7 +28,7 @@ class MyInfo : CanFailProtocol
             if let error = $1
             {
                 print("Deu erro \(error.code)")
-                self.error(error.userInfo["error"] as? String)
+                if let closure = self.error { closure(RequestError(title: "Request failed", message: error.userInfo["error"] as! String)) }
                 return
             }
             
@@ -59,7 +57,7 @@ class MyInfo : CanFailProtocol
             if let error = $1
             {
                 print("Deu erro \(error.code)")
-                self.error(error.userInfo["error"] as? String)
+                if let closure = self.error { closure(RequestError(title: "Request failed", message: error.userInfo["error"] as! String)) }
                 return
             }
             
@@ -91,7 +89,7 @@ class MyInfo : CanFailProtocol
         {
             self.totalRequestedUsers = 0
             self.userRequestCount = 0
-            self.success("OK")
+            if let closure = self.success { closure(nil) }
         }
     }
     
@@ -109,11 +107,11 @@ class MyInfo : CanFailProtocol
                     if let error = $1
                     {
                         print("Deu erro aqui na hora de apagar o rolê \(error.code)")
-                        self.error(error.userInfo["error"] as? String)
+                        if let closure = self.error { closure(RequestError(title: "Request failed", message: error.userInfo["error"] as! String)) }
                         return
                     }
                     
-                    self.success("OK")
+                    if let closure = self.success { closure(nil) }
                 }
             }
         }
@@ -131,11 +129,11 @@ class MyInfo : CanFailProtocol
         {
             if let error = $1
             {
-                self.error(error.userInfo["error"] as? String)
+                if let closure = self.error { closure(RequestError(title: "Request failed", message: error.userInfo["error"] as! String)) }
                 return
             }
             
-            self.success("OK")
+            if let closure = self.success { closure(nil) }
         }
         
         return self
@@ -189,7 +187,8 @@ struct SUser : User
     }
 }
 
-struct FUser : User, Following
+typealias FollowingUser = protocol<User, Following>
+struct FUser : FollowingUser
 {
     var uniqueID: String = "no ID"
     var username: String = "no name"
