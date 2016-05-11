@@ -116,7 +116,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="joG-pA-aZ6">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="joG-pA-aZ6">
                                 <rect key="frame" x="20" y="280" width="200" height="30"/>
                                 <color key="backgroundColor" red="0.82745098039215681" green="0.93333333333333335" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <state key="normal" title="Pick Image"/>
@@ -124,14 +124,14 @@
                                     <action selector="pickImage:" destination="1HL-v4-nyR" eventType="touchUpInside" id="84d-Vi-BDJ"/>
                                 </connections>
                             </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9qz-ar-lJD">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="9qz-ar-lJD">
                                 <rect key="frame" x="20" y="72" width="200" height="200"/>
                                 <color key="backgroundColor" red="0.82745098039215681" green="0.93333333333333335" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="9qz-ar-lJD" secondAttribute="height" multiplier="1:1" id="ZKm-xM-HoO"/>
                                 </constraints>
                             </imageView>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" text="type your message..." translatesAutoresizingMaskIntoConstraints="NO" id="Q9K-4T-5jl">
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="type your message..." translatesAutoresizingMaskIntoConstraints="NO" id="Q9K-4T-5jl">
                                 <rect key="frame" x="228" y="72" width="352" height="200"/>
                                 <color key="backgroundColor" red="0.40000000600000002" green="0.80000001190000003" blue="1" alpha="0.24163323479729729" colorSpace="calibratedRGB"/>
                                 <constraints>
@@ -140,7 +140,7 @@
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="beZ-Ou-sBi">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="beZ-Ou-sBi">
                                 <rect key="frame" x="328" y="280" width="152" height="30"/>
                                 <color key="backgroundColor" red="0.82745098039215681" green="0.93333333333333335" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
@@ -188,7 +188,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="userCell" textLabel="txh-JS-Ubd" style="IBUITableViewCellStyleDefault" id="Nop-T0-egq">
-                                <rect key="frame" x="0.0" y="92" width="600" height="44"/>
+                                <rect key="frame" x="0.0" y="28" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Nop-T0-egq" id="MDO-VV-C3y">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
@@ -224,7 +224,6 @@
         <scene sceneID="95p-HA-tZp">
             <objects>
                 <tabBarController id="TD9-LI-TnH" sceneMemberID="viewController">
-                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="JC0-Yr-Gx4">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -250,7 +249,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="feedCell" rowHeight="329" id="QK7-GF-kAN" customClass="FeedTableViewCell" customModule="ParseStarterProject_Swift" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="92" width="600" height="329"/>
+                                <rect key="frame" x="0.0" y="28" width="600" height="329"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="QK7-GF-kAN" id="kZI-1Q-1DF">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="328"/>

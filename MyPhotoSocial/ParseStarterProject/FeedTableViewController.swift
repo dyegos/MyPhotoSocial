@@ -13,8 +13,7 @@ class FeedTableViewController: UITableViewController
 {
     // MARK: - Properties
     
-    var followeds = [User]()
-    var posts = [FUser]()
+    private var posts = [FUser]()
     
     // MARK: - view lifecycle
     
@@ -22,36 +21,30 @@ class FeedTableViewController: UITableViewController
     {
         super.viewDidLoad()
         
-        for flwing in followeds
+        let arrayOfFollowings = PFUser.currentUser()?["followings"] as? [String] ?? [String]()
+        
+        PFQuery(className: "Post")
+        .whereKey("userId", containedIn: arrayOfFollowings)
+        .findObjectsInBackgroundWithBlock
         {
-            PFQuery(className: "Post")
-            .whereKey("userId", equalTo: flwing.uniqueID)
-            .findObjectsInBackgroundWithBlock
+            guard let objs = $0 where objs.count > 0 else
             {
-                if let error = $1
-                {
-                    print("Deu erro \(error.code)")
-                    return
-                }
-                
-                guard let objs = $0 where objs.count > 0 else
-                {
-                    print("Objects invalid or has no itens")
-                    return
-                }
-                
-                self.posts = objs.flatMap
-                {
-                    var user = FUser(uniqueID: flwing.uniqueID, username: flwing.username)
-                    
-                    user.imageFile = $0["imageData"] as? PFFile
-                    user.message = $0["message"] as? String
-                    
-                    return user
-                }
-                
-                self.tableView.reloadSections(NSIndexSet(index: 0), withRowAnimation: UITableViewRowAnimation.Fade)
+                print("Objects invalid or has no itens : Deu erro \($1?.code)")
+                return
             }
+            
+            self.posts = objs.flatMap
+            {
+                guard let user = $0 as? PFUser else { return nil }
+                var fuser = FUser(uniqueID: user.objectId!, username: user.username!)
+                
+                fuser.imageFile = $0["imageData"] as? PFFile
+                fuser.message = $0["message"] as? String
+                
+                return fuser
+            }
+            
+            self.tableView.reloadSections(NSIndexSet(index: 0), withRowAnimation: UITableViewRowAnimation.Fade)
         }
     }
 
@@ -71,8 +64,7 @@ class FeedTableViewController: UITableViewController
     {
         let cell = tableView.dequeueReusableCellWithIdentifier(CellIdentifier.Feed, forIndexPath: indexPath) as! FeedTableViewCell
         
-        let viewModel = CardViewModel(model: posts[indexPath.row])
-        cell.configure(withPresenter: viewModel)
+        cell.configure(withPresenter: CardViewModel(model: posts[indexPath.row]))
         
         return cell
     }

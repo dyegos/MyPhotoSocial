@@ -19,8 +19,7 @@
 		81BA817F1A49E0F000E65899 /* libstdc++.6.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 81BA817E1A49E0F000E65899 /* libstdc++.6.dylib */; };
 		880185E61CDFAC210079BF8E /* ParseStarterProject_SwiftTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 880185E51CDFAC210079BF8E /* ParseStarterProject_SwiftTests.swift */; };
 		880C6DD81CBF1CA500E2BCEE /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 880C6DD71CBF1CA500E2BCEE /* Extensions.swift */; };
-		887DAFAE1CA726270067E830 /* MyInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 887DAFAD1CA726270067E830 /* MyInfo.swift */; };
-		887DAFB01CA736B70067E830 /* ServerRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 887DAFAF1CA736B70067E830 /* ServerRequests.swift */; };
+		887DAFAE1CA726270067E830 /* ServerRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 887DAFAD1CA726270067E830 /* ServerRequests.swift */; };
 		8889BA1F1C9E1C3400676CAC /* Login.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8889BA1E1C9E1C3400676CAC /* Login.swift */; };
 		889106461C8CF6D90020A9D2 /* FeedTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 889106451C8CF6D90020A9D2 /* FeedTableViewController.swift */; };
 		889106481C8CF6F20020A9D2 /* FeedTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 889106471C8CF6F20020A9D2 /* FeedTableViewCell.swift */; };
@@ -57,8 +56,7 @@
 		880185E51CDFAC210079BF8E /* ParseStarterProject_SwiftTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParseStarterProject_SwiftTests.swift; sourceTree = "<group>"; };
 		880185E71CDFAC210079BF8E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		880C6DD71CBF1CA500E2BCEE /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
-		887DAFAD1CA726270067E830 /* MyInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyInfo.swift; sourceTree = "<group>"; };
-		887DAFAF1CA736B70067E830 /* ServerRequests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServerRequests.swift; sourceTree = "<group>"; };
+		887DAFAD1CA726270067E830 /* ServerRequests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServerRequests.swift; sourceTree = "<group>"; };
 		8889BA1E1C9E1C3400676CAC /* Login.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Login.swift; sourceTree = "<group>"; };
 		889106451C8CF6D90020A9D2 /* FeedTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedTableViewController.swift; sourceTree = "<group>"; };
 		889106471C8CF6F20020A9D2 /* FeedTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedTableViewCell.swift; sourceTree = "<group>"; };
@@ -131,8 +129,7 @@
 				889106451C8CF6D90020A9D2 /* FeedTableViewController.swift */,
 				889106471C8CF6F20020A9D2 /* FeedTableViewCell.swift */,
 				8889BA1E1C9E1C3400676CAC /* Login.swift */,
-				887DAFAD1CA726270067E830 /* MyInfo.swift */,
-				887DAFAF1CA736B70067E830 /* ServerRequests.swift */,
+				887DAFAD1CA726270067E830 /* ServerRequests.swift */,
 			);
 			path = ParseStarterProject;
 			sourceTree = "<group>";
@@ -278,9 +275,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				889106461C8CF6D90020A9D2 /* FeedTableViewController.swift in Sources */,
-				887DAFB01CA736B70067E830 /* ServerRequests.swift in Sources */,
 				889106481C8CF6F20020A9D2 /* FeedTableViewCell.swift in Sources */,
-				887DAFAE1CA726270067E830 /* MyInfo.swift in Sources */,
+				887DAFAE1CA726270067E830 /* ServerRequests.swift in Sources */,
 				81BA814D1A49DA1800E65899 /* LoginViewController.swift in Sources */,
 				88E99D8E1C8C6D2900DE882E /* UploadImageViewController.swift in Sources */,
 				880C6DD81CBF1CA500E2BCEE /* Extensions.swift in Sources */,
@@ -498,6 +494,7 @@
 				880185EC1CDFAC220079BF8E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

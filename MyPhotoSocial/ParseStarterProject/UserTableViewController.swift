@@ -20,7 +20,7 @@ class UserTableViewController: UITableViewController
     //Creates the instance for push to refresh object
     let refresher = UIRefreshControl()
     //Creates a struct to save users info
-    let myInfo = MyInfo()
+    let myInfo = ServerRequests()
     
     override func viewDidLoad()
     {
@@ -165,7 +165,7 @@ class UserTableViewController: UITableViewController
             {
                 if identifier == SegueIdentifier.Feed
                 {
-                    viewController.followeds = myInfo.users.filter { $0.isFollowing }
+                    //viewController.followeds = myInfo.users.filter { $0.isFollowing }
                 }
             }
         }

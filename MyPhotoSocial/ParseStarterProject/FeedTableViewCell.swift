@@ -19,9 +19,14 @@ protocol MessageFieldPresentable
     var message: String { get }
 }
 
-protocol ImageViewPresentable
+protocol ImageViewPFFilePresentable
 {
     var imageFile: PFFile? { get }
+}
+
+protocol ImageViewPresentable
+{
+    var imageName: String { get }
 }
 
 
@@ -43,7 +48,7 @@ extension CardViewModel
     var imageFile:PFFile? { return model.imageFile }
 }
 
-typealias UserPhotoCard = protocol<UserNamePresentable, MessageFieldPresentable, ImageViewPresentable>
+typealias UserPhotoCard = protocol<UserNamePresentable, MessageFieldPresentable, ImageViewPFFilePresentable>
 
 class FeedTableViewCell: UITableViewCell
 {
